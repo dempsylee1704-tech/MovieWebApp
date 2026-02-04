@@ -19,12 +19,12 @@ class DataManager():
         db.session.commit()
 
     def update_movie(self, movie_id, new_title):
-        updated_movie = Movie.query.filter_by(id=movie_id).first()
-        if updated_movie is None:
-            raise ValueError
-        else:
-            updated_movie.name = new_title
-            db.session.commit()
+        movie = Movie.query.get(movie_id)
+        if movie is None:
+            raise ValueError("Movie not found")
+
+        movie.name = new_title
+        db.session.commit()
 
     def delete_movie(self, movie_id):
         deleted_movie = Movie.query.filter_by(id=movie_id).first()

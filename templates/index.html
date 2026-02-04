@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Users | MovieApp{% endblock %}
+
+{% block content %}
+  <h1>Users</h1>
+
+  <div class="grid grid-2">
+    {% for user in users %}
+      <div class="card">
+        <div class="card-title">{{ user.name }}</div>
+
+        <a class="btn btn-primary"
+           href="{{ url_for('get_movies', user_id=user.id) }}">
+          View Movies
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="spacer-24"></div>
+
+  <div class="card">
+    <div class="card-title">Add New User</div>
+
+    <form class="form-row" action="{{ url_for('create_user') }}" method="post">
+      <input class="input" type="text" name="name" placeholder="User name" required>
+      <button class="btn btn-primary" type="submit">Add User</button>
+    </form>
+  </div>
+{% endblock %}
