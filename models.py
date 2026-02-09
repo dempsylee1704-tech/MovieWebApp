@@ -6,6 +6,9 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
 
+    def __repr__(self):
+        return f"<User {self.id}: {self.name}>"
+
 
 class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -16,3 +19,6 @@ class Movie(db.Model):
 
     # Link Movie to User
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Movie {self.id}: {self.name}"
